@@ -1,0 +1,1 @@
+## Adapter pattern with python3 

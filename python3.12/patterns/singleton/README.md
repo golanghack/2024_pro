@@ -1,0 +1,1 @@
+## Realisation singleton pattern in Python3 

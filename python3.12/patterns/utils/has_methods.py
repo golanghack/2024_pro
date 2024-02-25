@@ -1,6 +1,7 @@
-#! /usr/bin/env python3 
+#! /usr/bin/env python3
 
 from typing import List
+
 
 def has_methods(*methods: List[str]):
     def decorator(Base):
@@ -14,7 +15,8 @@ def has_methods(*methods: List[str]):
                     if not needed:
                         return True
             return NotImplemented
-        Base.__subclasshook__ = classmethod(__subclasshook__)
-        return Base 
-    return decorator
 
+        Base.__subclasshook__ = classmethod(__subclasshook__)
+        return Base
+
+    return decorator

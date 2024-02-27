@@ -16,7 +16,7 @@ def timetrials(func: Callable, n: int, trials: int = 10) -> float:
 
 
 if __name__ == "__main__":
-    n = 10000
-    trials = 20
-    result, steps = timetrials(sum, n, trials)
-    print(f"average -> {result}  <--> {steps}")
+    for n in [50, 100, 200, 400, 800, 1600, 3200, 6400, 12800]:
+        trials = 20
+        result, steps = timetrials(sum, n, trials)
+        print(f"average -> {result}  <--> {steps}")

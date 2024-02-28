@@ -3,7 +3,7 @@
 from typing import Any
 
 
-class ListDequeue:
+class ListDeque:
     """ 
     Realisation Deque data
     

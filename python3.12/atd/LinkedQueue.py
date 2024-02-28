@@ -20,7 +20,7 @@ class LinkedQueue:
     def enqueue(self, item: Any) -> None:
         """Added element in queue"""
 
-        self._list.add_last(item)
+        self._list.add_first(item)
 
     def dequeue(self) -> Any:
         """Remove first element"""
@@ -34,12 +34,12 @@ class LinkedQueue:
         self._list.add_first(item)
         return item
 
-    def is_empty(self) -> int:
-        """is empty of queue"""
-
-        return len(self) == 0
-
     def __len__(self) -> int:
         """Lenght of queue"""
 
         return len(self._list)
+
+    def is_empty(self) -> int:
+        """is empty of queue"""
+
+        return len(self) == 0

@@ -26,7 +26,7 @@ class QueueTests:
         for i in range(1000):
             queue.enqueue(2 * i + 3)
         for i in range(1000):
-            self.assertEqual(q.dequeue(), 2 * i + 3)
+            self.assertEqual(queue.dequeue(), 2 * i + 3)
 
     def test_lenght(self):
         queue = self.Queue()

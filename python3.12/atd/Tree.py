@@ -35,3 +35,18 @@ class Tree:
                 yield data
 
     __iter__ = preorder
+
+    def _postorder(self):
+        node, child_iter = self, iter(self.children)
+        stack = [(node, child_iter)]
+        while stack:
+            node, child_iter = stack[-1]
+            try:
+                child = next(child_iter)
+                stack.append(child, iter(child.children))
+            except StopIteration:
+                yield node
+                stack.pop()
+
+    def postorder(self):
+        return (node.data for node in self._postorder())

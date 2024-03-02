@@ -27,3 +27,11 @@ class Tree:
 
     def __contains__(self, key):
         return self.data == key or any(key in ch for ch in self.children)
+
+    def preorder(self):
+        yield self.data
+        for child in self.children:
+            for data in child.preorder():
+                yield data
+
+    __iter__ = preorder

@@ -24,3 +24,6 @@ class Tree:
         if len(self.children) == 0:
             return 0
         return 1 + max(child.height() for child in self.children)
+
+    def __contains__(self, key):
+        return self.data == key or any(key in ch for ch in self.children)

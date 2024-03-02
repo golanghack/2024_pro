@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-"""Longest common sibsequence"""
+"""Longest common subsequence"""
 
 
 def lcs_rec(x: str, y: str) -> str:

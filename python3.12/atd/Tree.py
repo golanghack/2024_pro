@@ -7,8 +7,12 @@ class Tree:
         self.data = next(iterator)
         self.children = [Tree(elem) for elem in iterator]
 
-    def __str__(self, level=0):
-        tree_string = " " * level + str(self.data)
+    def _list_with_levels(self, level, trees):
+        trees.append(" " * level + str(self.data))
         for child in self.children:
-            tree_string += "\n" + child.__str__(level + 1)
-        return tree_string
+            child._list_with_levels(level + 1, trees)
+
+    def __str__(self):
+        trees = []
+        self._list_with_levels(0, trees)
+        return "\n".join(trees)

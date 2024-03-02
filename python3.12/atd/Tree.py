@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 
+from queue import Queue
+
 
 class Tree:
     def __init__(self, _lists):
@@ -50,3 +52,18 @@ class Tree:
 
     def postorder(self):
         return (node.data for node in self._postorder())
+
+    def _layer_order(self):
+        node, child_iter = self, iter(self.children)
+        queue = Queue()
+        queue.enqueue((node, child_iter))
+        while queue:
+            node, child_iter = queue.peek()
+            try:
+                child = next(child_iter)
+                queue.enqueue((child, iter(child.children)))
+            except StopIteration:
+                yield node
+
+    def layer_order(self):
+        return (node.data for node in self._layer_order())

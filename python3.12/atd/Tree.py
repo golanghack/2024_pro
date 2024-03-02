@@ -19,3 +19,8 @@ class Tree:
 
     def __eq__(self, other):
         return self.data == other.data and self.children == other.children
+
+    def height(self):
+        if len(self.children) == 0:
+            return 0
+        return 1 + max(child.height() for child in self.children)

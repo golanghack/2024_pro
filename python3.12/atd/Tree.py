@@ -16,3 +16,6 @@ class Tree:
         trees = []
         self._list_with_levels(0, trees)
         return "\n".join(trees)
+
+    def __eq__(self, other):
+        return self.data == other.data and self.children == other.children

@@ -44,3 +44,16 @@ class DoubleLinkedListGood:
 
     def remove_last(self):
         return self._remove(self._tail)
+
+    def __iadd__(self, other):
+        if other._head is not None:
+            if self._head is None:
+                self._head = other._head
+            else:
+                self._tail.link = other._head
+                other._head.link = self._tail
+            self._tail = other._tail
+            self._lenght = self._lenght + other._lenght
+            # clear other
+            other.__init__()
+        return self

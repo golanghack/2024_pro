@@ -1,0 +1,1 @@
+# Realisation a dict in go

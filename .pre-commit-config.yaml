@@ -1,3 +1,7 @@
+    pre-commit:
+        commands:
+            run: golangci-lint run --fix
+    
     # ==========================================================================
     # Golang Pre-Commit Hooks | https://github.com/tekwizely/pre-commit-golang
     #

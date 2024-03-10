@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "app-05"
+version = "0.1.0"
+description = "Create simple project for used postgresql, docker, django"
+authors = ["golanghack <golanghack@gmail.com>"]
+license = "BSD"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

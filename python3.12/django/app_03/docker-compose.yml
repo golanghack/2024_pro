@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; poetry run ./manage.py runserver 0.0.0.0:8000' 
+    volumes:
+      - .:/app_03 
+    expose:
+      - 8000 
+    environment:
+      - DEBUG=1 
+      - DATABASE_URL=postgresql://app_03:app_03@db:5432/app_03 
+    depends_on:
+      - db 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.django.rule=Host(`django.localhost`)"
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=app_03
+      - POSTGRES_PASSWORD=app_03
+      - POSTGRES_DB=app_03 
+  traefik:
+    image: traefik:v2.9.6
+    ports:
+      - 8008:80
+      - 8081:8080 
+    volumes:
+      - "$PWD/traefik.dev.toml:/etc/traefik/traefik.toml"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+volumes:
+  postgres_data:

@@ -1,0 +1,6 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.autoClosingComments": "always",
+    "editor.hover.enabled": false,
+    "editor.parameterHints.enabled": false
+}

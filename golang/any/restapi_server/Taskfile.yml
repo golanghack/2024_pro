@@ -1,0 +1,22 @@
+version: "3"
+tasks:
+  build:
+    desc: Build the server app
+    cmds:
+      - GOFLAGS=-mod=mod go build -o bin/go_rest_api internal/main.go
+  run:
+    desc: Run app 
+    cmds:
+      - GOFLAGS=-mod=mod go run internal/main.go
+  swagger.gen:
+    desc: Generate go code 
+    cmds:
+      - GOFLAGS=-mod=mod go generate github.com/golanghack/2024_pro/golang/any/restapi_server/internal github.com/golanghack/2024_pro/golang/any/restapi_server/pkg/swagger
+  swagger.validate:
+    desc: Validate swagger 
+    cmds:
+      - swagger validate pkg/swagger/swagger.yml
+  swagger.doc:
+    desc: Documantation for swagger
+    cmds:
+      - docker run -i yousan/swagger-yaml-to-html < pkg/swagger/swagger.yml > doc/index.html

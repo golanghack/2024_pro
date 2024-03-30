@@ -1,1 +1,0 @@
-# Simple Restapi server with golang

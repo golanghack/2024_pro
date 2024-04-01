@@ -9,7 +9,7 @@ def post_list(request: str):
     """
     
     posts_list = Post.published.all()
-    paginator = Paginator(posts_list, 3)
+    paginator = Paginator(posts_list, 2)
     page_number = request.GET.get('page', 1)
     posts = paginator.page(page_number)
     temp = 'blog/post/list.html'

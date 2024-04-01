@@ -4,6 +4,7 @@ from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from blog.models import Post 
 
+
 def post_list(request: str):
     """Formation a list for posts.
     
@@ -35,3 +36,5 @@ def post_detail(request: str, year: int, month: int, day: int, post: str):
     temp = 'blog/post/detail.html'
     context = {'post': post,}
     return render(request, temp, context)
+
+

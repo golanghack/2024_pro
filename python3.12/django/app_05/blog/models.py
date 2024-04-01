@@ -2,6 +2,13 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+
+class PublishedManager(models.Manager):
+    """Custom manager for published post."""
+    
+    def get_queryset(self) -> models.QuerySet:
+        return super().get_queryset().filter(status=Post.Status.PUBLISHED)
+    
 class Post(models.Model):
     """ 
     The Post class model.
@@ -16,6 +23,8 @@ class Post(models.Model):
         updated: The date of update post.
         status: The status for post.
         author: The user as an author for a post.
+        objects: The default manager for models Post data.
+        published: The custom manager for work with posts.
     """ 
     
     class Status(models.TextChoices):
@@ -35,6 +44,8 @@ class Post(models.Model):
                             default=Status.DRAFT)
     author = models.ForeignKey(User, on_delete=models.CASCADE, 
                                related_name='blog_posts')
+    objects = models.Manager()
+    published = PublishedManager()
     
     class Meta:
         """Default ordering for posts."""

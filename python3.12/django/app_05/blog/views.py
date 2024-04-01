@@ -2,8 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
+from django.core.mail import send_mail
 from blog.models import Post
 from blog.forms import EmailPostForm
+from decouple import Config, RepositoryEnv
+config = Config(RepositoryEnv(".env"))
 
 
 def post_list(request: str):
@@ -46,13 +49,22 @@ def post_share(request: str, post_id: int):
     """Return a post for id"""
 
     post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
+    # flag of sending 
+    flag = False 
     # condition
     if request.method == "POST":
         form = EmailPostForm(request.POST)
         if form.is_valid():
             # success
             cd = form.cleaned_data
+            post_url = request.build_absolute_uri(
+                post.get_absolute_url()
+            )
+            subject = f'{cd['name']} recomended for you ' f'{post.title}'
+            message = f'Read {post.title} at {post_url}\n\n' f'{cd['name']} comments -> {cd['comments']}'
+            send_mail(subject, message, f"{config('EMAIL_HOST_USER')}", [cd['to']])
+            flag = True
     form = EmailPostForm()
     temp = "blog/post/share.html"
-    context = {"post": post, "form": form}
+    context = {"post": post, "form": form, 'sent': flag,}
     return render(request, temp, context)

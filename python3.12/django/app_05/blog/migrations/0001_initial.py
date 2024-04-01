@@ -10,27 +10,56 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-    ]
+    dependencies = [migrations.swappable_dependency(settings.AUTH_USER_MODEL)]
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='use title for name of blog post', max_length=256)),
-                ('slug', models.SlugField(max_length=256)),
-                ('body', models.TextField(help_text='Enter a contant of blog post')),
-                ('publish', models.DateTimeField(default=django.utils.timezone.now)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateTimeField(auto_now=True)),
-                ('status', models.CharField(choices=[('DF', 'Draft'), ('PB', 'Published')], default='DF', max_length=2)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='blog_posts', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        help_text="use title for name of blog post", max_length=256
+                    ),
+                ),
+                ("slug", models.SlugField(max_length=256)),
+                ("body", models.TextField(help_text="Enter a contant of blog post")),
+                ("publish", models.DateTimeField(default=django.utils.timezone.now)),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                ("updated", models.DateTimeField(auto_now=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("DF", "Draft"), ("PB", "Published")],
+                        default="DF",
+                        max_length=2,
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="blog_posts",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-publish'],
-                'indexes': [models.Index(fields=['-publish'], name='blog_post_publish_bb7600_idx')],
+                "ordering": ["-publish"],
+                "indexes": [
+                    models.Index(
+                        fields=["-publish"], name="blog_post_publish_bb7600_idx"
+                    )
+                ],
             },
-        ),
+        )
     ]

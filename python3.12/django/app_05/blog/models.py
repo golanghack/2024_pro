@@ -6,10 +6,11 @@ from django.urls import reverse
 
 class PublishedManager(models.Manager):
     """Custom manager for published post."""
-    
+
     def get_queryset(self) -> models.QuerySet:
         return super().get_queryset().filter(status=Post.Status.PUBLISHED)
-    
+
+
 class Post(models.Model):
     """ 
     The Post class model.
@@ -26,47 +27,46 @@ class Post(models.Model):
         author: The user as an author for a post.
         objects: The default manager for models Post data.
         published: The custom manager for work with posts.
-    """ 
-    
+    """
+
     class Status(models.TextChoices):
         """Status of writable a post."""
-        
-        DRAFT = 'DF', 'Draft'
-        PUBLISHED = 'PB', 'Published'
 
-    title = models.CharField(max_length=256, help_text='use title for name of blog post')
-    slug = models.SlugField(max_length=256, unique_for_date='publish')
-    body = models.TextField(help_text='Enter a contant of blog post')
+        DRAFT = "DF", "Draft"
+        PUBLISHED = "PB", "Published"
+
+    title = models.CharField(
+        max_length=256, help_text="use title for name of blog post"
+    )
+    slug = models.SlugField(max_length=256, unique_for_date="publish")
+    body = models.TextField(help_text="Enter a contant of blog post")
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=2, 
-                            choices=Status.choices,
-                            default=Status.DRAFT)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, 
-                               related_name='blog_posts')
+    status = models.CharField(
+        max_length=2, choices=Status.choices, default=Status.DRAFT
+    )
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="blog_posts"
+    )
     objects = models.Manager()
     published = PublishedManager()
-    
+
     class Meta:
         """Default ordering for posts."""
-        
-        ordering = ['-publish']
-        indexes = [
-            models.Index(fields=['-publish']),
-        ]
+
+        ordering = ["-publish"]
+        indexes = [models.Index(fields=["-publish"])]
 
     def __str__(self):
         """Returns the title of the Post."""
-        
-        return f'{self.title}'
-    
+
+        return f"{self.title}"
+
     def get_absolute_url(self):
         """Find url from resources"""
-        
-        return reverse('blog:post_detail', args=[
-            self.publish.year,
-            self.publish.month, 
-            self.publish.day,
-            self.slug,
-        ])
+
+        return reverse(
+            "blog:post_detail",
+            args=[self.publish.year, self.publish.month, self.publish.day, self.slug],
+        )

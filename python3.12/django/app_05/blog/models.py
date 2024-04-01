@@ -35,7 +35,7 @@ class Post(models.Model):
         PUBLISHED = 'PB', 'Published'
 
     title = models.CharField(max_length=256, help_text='use title for name of blog post')
-    slug = models.SlugField(max_length=256)
+    slug = models.SlugField(max_length=256, unique_for_date='publish')
     body = models.TextField(help_text='Enter a contant of blog post')
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)

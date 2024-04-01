@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from blog.models import Post 
+from blog.forms import EmailPostForm
 
 
 def post_list(request: str):
@@ -37,4 +38,17 @@ def post_detail(request: str, year: int, month: int, day: int, post: str):
     context = {'post': post,}
     return render(request, temp, context)
 
-
+def post_share(request: str, post_id: int):
+    """Return a post for id"""
+    
+    post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
+    # condition
+    if request.method == 'POST':
+        form = EmailPostForm(request.POST)
+        if form.is_valid():
+            # success
+            cd = form.cleaned_data
+    form = EmailPostForm()
+    temp = 'blog/post/share.html'
+    context = {'post': post, 'form': form,}
+    return render(request, temp, context)

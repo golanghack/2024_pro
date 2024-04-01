@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # <--DOWNLOADED-->
-    'django-bootstrap5',
+    #'django-bootstrap5',
     # <--END DOWNLOADED-->
     # <--LOCAL-->
     'blog.apps.BlogConfig',

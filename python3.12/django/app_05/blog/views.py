@@ -12,10 +12,15 @@ def post_list(request: str):
     context = {'posts': posts,}
     return render(request, temp, context) 
 
-def post_detail(request: str, id: int):
+def post_detail(request: str, year: int, month: int, day: int, post: str):
     """Get detail information about a post with id."""
     
-    post = get_object_or_404(Post, id=id, status=Post.Status.PUBLISHED)
+    post = get_object_or_404(Post, 
+                             status=Post.Status.PUBLISHED,
+                             slug=post, 
+                             publish__year=year,
+                             publish__month=month, 
+                             publish__day=day,)
     temp = 'blog/post/detail.html'
     context = {'post': post,}
     return render(request, temp, context)

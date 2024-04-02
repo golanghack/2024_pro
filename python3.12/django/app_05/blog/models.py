@@ -70,3 +70,31 @@ class Post(models.Model):
             "blog:post_detail",
             args=[self.publish.year, self.publish.month, self.publish.day, self.slug],
         )
+
+class Comments(models.Model):
+    """Comments model for comments of users to posts.
+    
+    Attributes:
+            post: The related post for comments.
+            name: The name a string of comments.
+            email: The email for user send a comments to post.
+            body: The text for comments to post from user.
+            created: The date was create a comment for post.
+            updated: The date was updated a comment for post.
+            active: The boolean flag for status of comments.
+    """
+    
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['created',]
+        indexes = [models.Index(fields=['created']),]
+        
+    def __str__(self) -> str:
+        return f'Comment by {self.name} on {self.post}'

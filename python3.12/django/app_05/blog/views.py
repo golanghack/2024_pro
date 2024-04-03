@@ -52,7 +52,7 @@ def post_detail(request: str, year: int, month: int, day: int, post: str):
     comments = post.comments.filter(active=True)
     form = CommentForm()
     # recommended
-    post_tags_ids = post.tags.value_list('id', flat=True)
+    post_tags_ids = post.tags.values_list('id', flat=True)
     similar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(id=post.id)
     similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:4]
     temp = "blog/post/detail.html"

@@ -1,4 +1,5 @@
 from django import template
+from django.db.models import Count
 from blog.models import Post
 
 register = template.Library()
@@ -18,3 +19,11 @@ def show_latest_posts(count=3):
     latest_posts = Post.published.order_by("-publish")[:count]
     context = {"latest_posts": latest_posts}
     return context
+
+@register.simple_tag 
+def get_most_recommented_posts(count=3):
+    """Return 3 most recommented post."""
+    
+    return Post.published.annotate(
+        total_comments=Count('comments')
+    ).order_by('-total_comments')[:count]

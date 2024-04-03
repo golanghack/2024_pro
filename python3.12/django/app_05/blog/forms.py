@@ -1,4 +1,5 @@
 from django import forms
+from blog.models import Comment
 
 
 class EmailPostForm(forms.Form):
@@ -15,3 +16,11 @@ class EmailPostForm(forms.Form):
     email = forms.EmailField()
     to = forms.EmailField()
     comments = forms.CharField(max_length=1000, required=False, widget=forms.Textarea)
+
+
+class CommentForm(forms.ModelForm):
+        """Dinamic formation for form a comment."""
+        
+        class Meta:
+                model = Comment
+                fields = ['name', 'email', 'body',]

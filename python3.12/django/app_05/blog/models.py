@@ -71,7 +71,7 @@ class Post(models.Model):
             args=[self.publish.year, self.publish.month, self.publish.day, self.slug],
         )
 
-class Comments(models.Model):
+class Comment(models.Model):
     """Comments model for comments of users to posts.
     
     Attributes:

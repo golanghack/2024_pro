@@ -1,6 +1,6 @@
 from django.contrib import admin
 from blog.models import Post
-from blog.models import Comments
+from blog.models import Comment
 
 
 @admin.register(Post)
@@ -15,7 +15,7 @@ class PostAdminInterface(admin.ModelAdmin):
     date_hierarchy = "publish"
     ordering = ["status", "publish"]
 
-@admin.register(Comments)
+@admin.register(Comment)
 class CommentsAdmin(admin.ModelAdmin):
     """Administration of admin model"""
     

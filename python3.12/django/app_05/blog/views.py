@@ -1,3 +1,4 @@
+from taggit.models import Tag
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
@@ -12,13 +13,17 @@ from decouple import Config, RepositoryEnv
 config = Config(RepositoryEnv(".env"))
 
 
-def post_list(request: str):
+def post_list(request: str, tag_slug: str=None):
     """Formation a list for posts.
     
     Get all objects a posts return context, request, dict.
     """
 
     posts_list = Post.published.all()
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        posts_list = post_list.filter(tags__in=[tag])
     paginator = Paginator(posts_list, 2)
     page_number = request.GET.get("page", 1)
     try:
@@ -28,7 +33,7 @@ def post_list(request: str):
     except PageNotAnInteger:
         posts = paginator.page(1)
     temp = "blog/post/list.html"
-    context = {"posts": posts}
+    context = {"posts": posts, 'tag': tag,}
     return render(request, temp, context)
 
 

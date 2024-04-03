@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # <--DOWNLOADED-->
-    'taggit',
+    "taggit",
     # <--END DOWNLOADED-->
     # <--LOCAL-->
     "blog.apps.BlogConfig",
@@ -103,7 +103,7 @@ DATABASES = {
         "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
         "HOST": os.environ.get("SQL_HOST", "localhost"),
         "PORT": os.environ.get("SQL_PORt", "5432"),
-    }
+    },
 }
 
 

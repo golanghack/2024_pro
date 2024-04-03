@@ -19,8 +19,8 @@ class EmailPostForm(forms.Form):
 
 
 class CommentForm(forms.ModelForm):
-        """Dinamic formation for form a comment."""
-        
-        class Meta:
-                model = Comment
-                fields = ['name', 'email', 'body',]
+    """Dinamic formation for form a comment."""
+
+    class Meta:
+        model = Comment
+        fields = ["name", "email", "body"]

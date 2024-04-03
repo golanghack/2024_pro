@@ -15,11 +15,11 @@ class PostAdminInterface(admin.ModelAdmin):
     date_hierarchy = "publish"
     ordering = ["status", "publish"]
 
+
 @admin.register(Comment)
 class CommentsAdmin(admin.ModelAdmin):
     """Administration of admin model"""
-    
-    list_display = ['name', 'email', 'post', 'created', 'active',]
-    list_filter = ['active', 'created', 'updated',]
-    search_fields = ['name', 'email', 'body',]
-    
+
+    list_display = ["name", "email", "post", "created", "active"]
+    list_filter = ["active", "created", "updated"]
+    search_fields = ["name", "email", "body"]

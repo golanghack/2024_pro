@@ -13,4 +13,5 @@ urlpatterns = [
     ),
     path("<int:post_id>/share/", post_share, name="post_share"),
     path("<int:post_id>/comment/", post_comment, name="post_comment"),
+    path("tag/<slug:tag_slug>/", post_list, name="post_list_by_tag"),
 ]

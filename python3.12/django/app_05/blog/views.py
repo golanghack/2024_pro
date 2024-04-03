@@ -3,8 +3,11 @@ from django.core.paginator import Paginator
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.mail import send_mail
+from django.views.decorators.http import require_POST
 from blog.models import Post
+from blog.models import Comment
 from blog.forms import EmailPostForm
+from blog.forms import CommentForm
 from decouple import Config, RepositoryEnv
 config = Config(RepositoryEnv(".env"))
 
@@ -67,4 +70,25 @@ def post_share(request: str, post_id: int):
     form = EmailPostForm()
     temp = "blog/post/share.html"
     context = {"post": post, "form": form, 'sent': flag,}
+    return render(request, temp, context)
+
+
+@require_POST
+def post_comment(request: str,post_id: int):
+    """View for comments of post."""
+    
+    post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
+    comment = None
+    # sent
+    form = CommentForm(data=request.POST)
+    # validation
+    if form.is_valid():
+        # create Comment, dont save in db
+        comment = form.save(commit=False)
+        # post <-> comment
+        comment.post = post
+        # save in db 
+        comment.save()
+    temp = 'blog/post/comment.html'
+    context = {'post': post, 'form': form, 'comment': comment,}
     return render(request, temp, context)

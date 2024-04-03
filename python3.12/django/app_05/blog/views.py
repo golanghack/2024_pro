@@ -5,6 +5,7 @@ from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.mail import send_mail
 from django.views.decorators.http import require_POST
+from django.db.models import Count
 from blog.models import Post
 from blog.models import Comment
 from blog.forms import EmailPostForm
@@ -50,8 +51,12 @@ def post_detail(request: str, year: int, month: int, day: int, post: str):
     )
     comments = post.comments.filter(active=True)
     form = CommentForm()
+    # recommended
+    post_tags_ids = post.tags.value_list('id', flat=True)
+    similar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(id=post.id)
+    similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:4]
     temp = "blog/post/detail.html"
-    context = {"post": post, 'comments': comments, 'form': form,}
+    context = {"post": post, 'comments': comments, 'form': form, 'similar_posts': similar_posts,}
     return render(request, temp, context)
 
 

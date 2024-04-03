@@ -1,3 +1,4 @@
+from taggit.managers import TaggableManager
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -27,6 +28,7 @@ class Post(models.Model):
         author: The user as an author for a post.
         objects: The default manager for models Post data.
         published: The custom manager for work with posts.
+        tags: The taggs funcitonality.
     """
 
     class Status(models.TextChoices):
@@ -51,6 +53,7 @@ class Post(models.Model):
     )
     objects = models.Manager()
     published = PublishedManager()
+    tags = TaggableManager()
 
     class Meta:
         """Default ordering for posts."""

@@ -10,14 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-
-import os
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv())
-from decouple import Config, RepositoryEnv
+from decouple import Config
+from decouple import RepositoryEnv
 
 config = Config(RepositoryEnv(".env"))
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,7 +38,7 @@ SITE_ID = 1
 
 INSTALLED_APPS = [
     # <-- LOCAL -->
-   'account.apps.AccountConfig', 
+    "account.apps.AccountConfig",
     # <-- END LOCAL -->
     "django.contrib.admin",
     "django.contrib.auth",
@@ -49,8 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     # <--DOWNLOADED-->
     # <--END DOWNLOADED-->
     # <--LOCAL-->
@@ -67,7 +64,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "config.urls"
+ROOT_URLCONF = "social.urls"
 
 TEMPLATES = [
     {

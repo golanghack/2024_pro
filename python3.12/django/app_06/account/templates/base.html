@@ -9,7 +9,36 @@
 </head>
 <body>
     <header>
-        <div class="logo">Marks</div>
+        <span class="logo">Marks</span>
+        {% if request.user.is_authenticated %}
+            <ul class="menu">
+                <li {% if section == 'dashboard' %}class="selected"
+                    
+                {% endif %}>
+            <a href="{% url 'dashboard' %}">My dash</a>
+        </li>
+        <li {% if section == 'images' %}class="selected"
+            
+        {% endif %}>
+    <a href="#">Images</a>
+</li>
+<li {% if section == 'people' %}class="selected"
+    
+{% endif %}>
+<a href="#">People</a>
+</li>
+            </ul>
+            
+{% endif %}
+<span class="user">
+    {% if request.user.is_authenticated %}
+    Hi {{ request.user.first_name|default:request.user.username }}, 
+    <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">Login</a>
+        
+    {% endif %}
+</span>
     </header>
     <div id="content">
         {% block content %}

@@ -152,3 +152,9 @@ EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
 
 # console email
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+# LOGIN/LOGOUT Settings redirect
+LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"

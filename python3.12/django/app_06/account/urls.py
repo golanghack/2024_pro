@@ -12,7 +12,7 @@ urlpatterns = [
     # change a pass/log
     path(
         "password-change/",
-        auth.PasswordChangeDoneView.as_view(),
+        auth.PasswordChangeView.as_view(),
         name="password_change",
     ),
     path(

@@ -10,6 +10,7 @@
         <p>Try again.</p>
     {% else %}
         <p>use the following form to login -> </p>
+        <p>if you dint have an account -> <a href="{% url 'register' %}"> for register now.</a></p>
     {% endif %}
     <div class="login-form">
         <form action="{% url 'login' %}" method="post">

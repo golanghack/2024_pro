@@ -160,5 +160,5 @@ LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
 # media
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"

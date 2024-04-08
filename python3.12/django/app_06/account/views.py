@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from account.forms import LoginForm, UserRegistrationForm
+from account.models import Profile
 
 
 @login_required
@@ -24,6 +25,7 @@ def register(request):
             new_user.set_password(user_form.cleaned_data["password"])
             # save
             new_user.save()
+            Profile.objects.create(user=new_user)
             template_name = "account/register_done.html"
             context = {
                 "new_user": new_user,

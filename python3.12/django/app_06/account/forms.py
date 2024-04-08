@@ -51,3 +51,12 @@ class UserEditForm(forms.ModelForm):
             "last_name",
             "email",
         ]
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            "date_of_birth",
+            "photo",
+        ]

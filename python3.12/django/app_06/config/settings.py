@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.sitemaps",
     # <--DOWNLOADED-->
-    'easy_thumbnails',
+    "easy_thumbnails",
     # <--END DOWNLOADED-->
     # <--LOCAL-->
     "images.apps.ImagesConfig",

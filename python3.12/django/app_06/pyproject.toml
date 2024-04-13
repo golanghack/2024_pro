@@ -14,6 +14,7 @@ python-dotenv = "^1.0.1"
 python-decouple = "^3.8"
 pillow = "^10.3.0"
 requests = "^2.31.0"
+easy-thumbnails = "^2.8.5"
 
 
 [build-system]

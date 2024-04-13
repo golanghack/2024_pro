@@ -36,6 +36,7 @@
         {% endfor %}
     </div>      
     {% endwith %}
+    {% endblock content %}
 {% block domready %}
     const url = '{% url "images:like" %}';
     let options = {
@@ -66,9 +67,8 @@ likeButton.innerHTML = action;
 
 let likeCount = document.querySelector('span.count .total');
 let totalLikes = parseInt(likeCount.innerHTML);
-likeCount.innerHTML = previousAction === 'like' ? totalLikes + 1 : totalLikes – 1;
+if likeCount.innerHTML = previousAction === 'like' ? totalLikes + 1 : totalLikes - 1;
 }
 })
     });
 {% endblock domready %}
-{% endblock content %}

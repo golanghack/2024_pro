@@ -80,3 +80,14 @@ def user_list(request):
         "users": users,
     }
     return render(request, template_name, context)
+
+
+@login_required
+def user_detail(request, username):
+    user = get_list_or_404(User, username=username, is_active=True)
+    template_name = "account/user/detail.html"
+    context = {
+        "section": "people",
+        "user": user,
+    }
+    return render(request, template_name, context)

@@ -13,6 +13,7 @@ python-config = "^0.1.2"
 python-dotenv = "^1.0.1"
 python-decouple = "^3.8"
 pillow = "^10.3.0"
+requests = "^2.31.0"
 
 
 [build-system]

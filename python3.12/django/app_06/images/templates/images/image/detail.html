@@ -58,6 +58,15 @@ fetch(url, options)
 .then(data => {
 if (data['status'] === 'ok')
 {
+    let previousAction = likeButton.dataset.action;
+
+let action = previousAction === 'like' ? 'unlike' : 'like';
+likeButton.dataset.action = action;
+likeButton.innerHTML = action;
+
+let likeCount = document.querySelector('span.count .total');
+let totalLikes = parseInt(likeCount.innerHTML);
+likeCount.innerHTML = previousAction === 'like' ? totalLikes + 1 : totalLikes – 1;
 }
 })
     });

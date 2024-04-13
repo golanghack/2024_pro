@@ -4,8 +4,12 @@
 {% endblock title %}
 {% block content %}
     <h1>Dashboard</h1>
-    <p>Welcome</p>
+    {% with total_images_created=request.user.images_created.count %}
+        <p>Welcome to dashboard.</p>
+        <p>You have bookmarked {{ total_images_created }} image{{ total_images_created|pluralize }}</p>
+        
+    {% endwith %}
+    <p>Drag and drop button -> <a href="javascript:{% include 'launcher.js' %}" class="button">Share</a></p>
     <p>Edit profile -> <a href="{% url 'edit' %}">here</a></p>
     <p>Change password -> <a href="{% url 'password_change' %}">here</a></p>
-    
 {% endblock content %}

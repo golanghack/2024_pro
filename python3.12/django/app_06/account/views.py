@@ -10,6 +10,7 @@ from account.forms import UserEditForm
 from account.forms import ProfileEditForm
 from account.models import Profile
 from account.models import Contact
+from actions.utils import create_action
 
 
 @login_required
@@ -34,6 +35,7 @@ def register(request):
             # save
             new_user.save()
             Profile.objects.create(user=new_user)
+            create_action(new_user, "created an account")
             template_name = "account/register_done.html"
             context = {
                 "new_user": new_user,

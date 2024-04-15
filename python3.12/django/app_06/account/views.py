@@ -95,22 +95,29 @@ def user_detail(request, username):
     }
     return render(request, template_name, context)
 
+
 @login_required
 @require_POST
 def user_follow(request):
-    user_id = request.POST.get('id')
-    action = request.POST.get('action')
+    user_id = request.POST.get("id")
+    action = request.POST.get("action")
     if user_id and action:
         try:
             user = User.objects.get(id=user_id)
-            if action == 'follow':
+            if action == "follow":
                 Contact.objects.get_or_create(user_from=request.user, user_to=user)
             else:
                 Contact.objects.filter(user_from=request.user, user_to=user).delete()
-            ok_context = {'status': 'ok',}
+            ok_context = {
+                "status": "ok",
+            }
             return JsonResponse(ok_context)
         except User.DoesNotExist:
-            err_user_context = {'status': 'error',}
+            err_user_context = {
+                "status": "error",
+            }
             return JsonResponse(err_user_context)
-    err_context = {'status': 'error',}
+    err_context = {
+        "status": "error",
+    }
     return JsonResponse(err_context)

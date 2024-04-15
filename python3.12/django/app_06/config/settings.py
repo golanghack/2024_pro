@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     # <--END DOWNLOADED-->
     # <--LOCAL-->
     "images.apps.ImagesConfig",
-    'actions.apps.ActionsConfig',
+    "actions.apps.ActionsConfig",
     # <--END LOCAL-->
 ]
 

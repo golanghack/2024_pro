@@ -10,6 +10,7 @@ from account.forms import UserEditForm
 from account.forms import ProfileEditForm
 from account.models import Profile
 from account.models import Contact
+from actions.models import Action
 from actions.utils import create_action
 
 
@@ -17,8 +18,20 @@ from actions.utils import create_action
 def dashboard(request):
     """Full dashboard after logged"""
 
+    # all actions show
+    actions = Action.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list("id", flat=True)
+    if following_ids:
+        # net users from to
+        # query actions
+        actions = actions.filter(user_id__in=following_ids)
+    actions = actions[:10]
+
     template_name = "account/dashboard.html"
-    context = {"section": "dashboard"}
+    context = {
+        "section": "dashboard",
+        "actions": actions,
+    }
     return render(request, template_name, context)
 
 

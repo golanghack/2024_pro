@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from images.forms import ImageCreateForm
 from images.models import Image
+from actions.utils import create_action
 
 
 @login_required
@@ -18,10 +19,11 @@ def image_create(request):
         if form.is_valid():
             cd = form.cleaned_data
             new_image = form.save(commit=False)
-        new_image.user = request.user
-        new_image.save()
-        messages.success(request, "Image added")
-        return redirect(new_image.get_absolute_url())
+            new_image.user = request.user
+            new_image.save()
+            create_action(request.user, "image", new_image)
+            messages.success(request, "Image added")
+            return redirect(new_image.get_absolute_url())
     else:
         form = ImageCreateForm(data=request.GET)
     template_name = "images/image/create.html"

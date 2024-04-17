@@ -25,7 +25,9 @@ def dashboard(request):
         # net users from to
         # query actions
         actions = actions.filter(user_id__in=following_ids)
-    actions = actions.select_related("user", "user__profile")[:10]
+    actions = actions.select_related("user", "user__profile")[:10].prefetch_related(
+        "target"
+    )[:10]
 
     template_name = "account/dashboard.html"
     context = {

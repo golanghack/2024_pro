@@ -12,4 +12,10 @@
     <p>Drag and drop button -> <a href="javascript:{% include 'launcher.js' %}" class="button">Share</a></p>
     <p>Edit profile -> <a href="{% url 'edit' %}">here</a></p>
     <p>Change password -> <a href="{% url 'password_change' %}">here</a></p>
+    <h2>Whats up</h2>
+    <div id="action-list">
+        {% for action in actions %}
+            {% include 'actions/action/detail.html' %}
+        {% endfor %}
+    </div>
 {% endblock content %}

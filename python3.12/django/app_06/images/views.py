@@ -10,6 +10,7 @@ from images.forms import ImageCreateForm
 from images.models import Image
 from actions.utils import create_action
 
+
 @login_required
 def image_create(request):
     """View for creation a image link."""

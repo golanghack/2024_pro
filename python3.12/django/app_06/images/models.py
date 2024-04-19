@@ -18,6 +18,7 @@ class Image(models.Model):
             indexes: An indexes for image in db.
             ordering: An order for sort.
             users_like: An user liked images many_to_many field.
+            total_likes: An denormalisation data for total likes for images.
     """
 
     user = models.ForeignKey(
@@ -34,10 +35,12 @@ class Image(models.Model):
     users_like = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="images_liked", blank=True
     )
+    total_likes = models.PositiveBigIntegerField(default=0)
 
     class Meta:
         indexes = [
             models.Index(fields=["-created"]),
+            models.Index(fields=["-total_likes"]),
         ]
         ordering = [
             "-created",

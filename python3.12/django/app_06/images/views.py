@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -8,6 +9,11 @@ from django.http import JsonResponse
 from images.forms import ImageCreateForm
 from images.models import Image
 from actions.utils import create_action
+
+# signals use
+images_by_popularity = Image.objects.annotate(
+    total_likes=Count("usrs_like").order_by("-total_likes")
+)
 
 
 @login_required

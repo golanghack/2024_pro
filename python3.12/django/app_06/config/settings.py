@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps",
     # <--DOWNLOADED-->
     "easy_thumbnails",
+    "debug_toolbar",
     # <--END DOWNLOADED-->
     # <--LOCAL-->
     "images.apps.ImagesConfig",
@@ -59,7 +60,13 @@ INSTALLED_APPS = [
     # <--END LOCAL-->
 ]
 
+# ddt
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

@@ -15,6 +15,7 @@ python-decouple = "^3.8"
 pillow = "^10.3.0"
 requests = "^2.31.0"
 easy-thumbnails = "^2.8.5"
+django-debug-toolbar = "^4.3.0"
 
 
 [build-system]

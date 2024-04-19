@@ -10,12 +10,6 @@ from images.forms import ImageCreateForm
 from images.models import Image
 from actions.utils import create_action
 
-# signals use
-images_by_popularity = Image.objects.annotate(
-    total_likes=Count("usrs_like").order_by("-total_likes")
-)
-
-
 @login_required
 def image_create(request):
     """View for creation a image link."""

@@ -6,9 +6,16 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.http import JsonResponse
+from django.conf import settings
+import redis
 from images.forms import ImageCreateForm
 from images.models import Image
 from actions.utils import create_action
+
+# redis configurted connect
+connect_redis = redis.Redis(
+    host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB
+)
 
 
 @login_required

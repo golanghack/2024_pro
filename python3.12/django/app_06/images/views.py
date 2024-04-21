@@ -13,7 +13,7 @@ from images.models import Image
 from actions.utils import create_action
 
 # redis configurted connect
-connect_redis = redis.Redis(
+redis_client = redis.Redis(
     host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB
 )
 
@@ -46,10 +46,12 @@ def image_detail(request, id, slug):
     """View for detail info about image"""
 
     image = get_object_or_404(Image, id=id, slug=slug)
+    total_images_views = redis_client.incr(f"image:{image.id}:views")
     template_name = "images/image/detail.html"
     context = {
         "section": "images",
         "image": image,
+        "total_views": total_images_views,
     }
     return render(request, template_name, context)
 

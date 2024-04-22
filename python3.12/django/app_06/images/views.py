@@ -47,6 +47,7 @@ def image_detail(request, id, slug):
 
     image = get_object_or_404(Image, id=id, slug=slug)
     total_images_views = redis_client.incr(f"image:{image.id}:views")
+    redis_client.zincrby('image_ranking', 1, image.id)
     template_name = "images/image/detail.html"
     context = {
         "section": "images",

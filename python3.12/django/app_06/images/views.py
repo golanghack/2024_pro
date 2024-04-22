@@ -47,7 +47,7 @@ def image_detail(request, id, slug):
 
     image = get_object_or_404(Image, id=id, slug=slug)
     total_images_views = redis_client.incr(f"image:{image.id}:views")
-    redis_client.zincrby('image_ranking', 1, image.id)
+    redis_client.zincrby("image_ranking", 1, image.id)
     template_name = "images/image/detail.html"
     context = {
         "section": "images",
@@ -82,3 +82,20 @@ def image_like(request):
             "status": "error",
         }
         return JsonResponse(context)
+
+
+@login_required
+def image_ranking(request):
+    """Return rank for image"""
+
+    image_ranking = redis_client.zrange("image_ranking", 0, -1, desc=True)[:10]
+    image_ranking_ids = [int(id) for id in image_ranking]
+    # get most
+    most_viewed = list(Image.objects.filter(id__in=image_ranking_ids))
+    most_viewed.sort(key=lambda x: image_ranking_ids.index(x.id))
+    template_name = "images/image/rank.html"
+    context = {
+        "section": "images",
+        "most_viewed": most_viewed,
+    }
+    return render(request, template_name, context)

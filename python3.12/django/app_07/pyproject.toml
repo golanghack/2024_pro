@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "app-07"
+version = "0.1.0"
+description = "e-commerce app with django 5.0"
+authors = ["noskill <golanghack@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.4"
+django-debug-toolbar = "^4.3.0"
+python-decouple = "3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

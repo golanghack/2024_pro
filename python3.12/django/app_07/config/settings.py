@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     # <-- END DOWNLOADED-->
     # <-- LOCAL -->
+    "shop.apps.ShopConfig",
     # <-- END LOCAL -->
 ]
 

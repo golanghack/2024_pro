@@ -47,6 +47,7 @@ class Product(models.Model):
         updated: a date updated a product.
         ordering: ordeing a products.
         indexes: indexes for products.
+        available: boolean for exist a product.
     """
 
     category = models.ForeignKey(

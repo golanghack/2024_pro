@@ -1,0 +1,25 @@
+{% load satic %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        E-COM
+    {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">E-COM</a>
+    </header>
+    <div id="subheader">
+        <div class="cart">Cart is empty</div>
+    </div>
+    <div id="content">
+        {% block content %}
+            
+        {% endblock content %}
+    </div>
+</body>
+</html>

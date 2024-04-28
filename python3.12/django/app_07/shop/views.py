@@ -20,3 +20,14 @@ def get_product_list(request: str, category_clug: str = None):
         "products": products,
     }
     return render(request, template_name, context)
+
+
+def get_product_detail(request: str, slug: str):
+    """Get a product detail."""
+
+    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    template_name = "shop/product/detail.html"
+    context = {
+        "product": product,
+    }
+    return render(request, template_name, context)

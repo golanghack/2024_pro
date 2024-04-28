@@ -53,6 +53,7 @@ class Product(models.Model):
         ordering: ordeing a products.
         indexes: indexes for products.
         available: boolean for exist a product.
+        get_absolute_url: a standart function for get absolute urls.
     """
 
     category = models.ForeignKey(
@@ -79,3 +80,6 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("shop:product_detail", args=[self.id, self.slug])

@@ -4,7 +4,7 @@ from shop.models import Product
 from shop.models import Category
 
 
-def get_product_list(request: str, category_clug: str = None):
+def get_product_list(request: str, category_slug: str = None):
     """The view for product list"""
 
     category = None

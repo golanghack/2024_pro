@@ -59,6 +59,19 @@ async = ["asgiref (>=3.2)"]
 dotenv = ["python-dotenv"]
 
 [[package]]
+name = "flask-script"
+version = "2.0.6"
+description = "Scripting support for Flask"
+optional = false
+python-versions = "*"
+files = [
+    {file = "Flask-Script-2.0.6.tar.gz", hash = "sha256:6425963d91054cfcc185807141c7314a9c5ad46325911bd24dcb489bd0161c65"},
+]
+
+[package.dependencies]
+Flask = "*"
+
+[[package]]
 name = "itsdangerous"
 version = "2.2.0"
 description = "Safely pass data to untrusted environments and back."
@@ -175,4 +188,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "f8a7cfa653e10af88cc9a8e65f4048a61de85d9041112d08ec18adef5458fc26"
+content-hash = "dd18e72918bdc894c0adfb2f65a39733db5d3fc60d5986b62274a8d04db93a7a"

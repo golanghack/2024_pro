@@ -1,10 +1,9 @@
 package main
 
-import "fmt"
+import ("fmt"
+	"math/rand/v2"
+)
 
 func main() {
-	var count = 10
-	for i := 0; i < count; i++ {
-		fmt.Println(i)
-	}
+	fmt.Println(rand.Int())
 }

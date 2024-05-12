@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "app-02"
+version = "0.1.0"
+description = "second app with fastapi"
+authors = ["noskill <golanghack@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.0"
+httpie = "^3.2.2"
+requests = "^2.31.0"
+pytest = "^8.2.0"
+pydantic = "^2.7.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

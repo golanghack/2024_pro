@@ -1,15 +1,13 @@
 [tool.poetry]
-name = "app-01"
+name = "app-02"
 version = "0.1.0"
-description = "first app with drf"
+description = ""
 authors = ["noskill <golanghack@gmail.com>"]
-license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
 djangorestframework = "^3.15.1"
-django = "^5.0.6"
 
 
 [build-system]

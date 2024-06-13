@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "app-010"
+version = "0.1.0"
+description = ""
+authors = ["golanghack"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+celery = "5.3.6"
+django-celery-beat = "^2.6.0"
+djangorestframework-simplejwt = "^5.3.1"
+drf-yasg = "^1.21.7"
+python-dotenv = "^1.0.1"
+psycopg2-binary = "^2.9.9"
+requests = "^2.32.3"
+django-debug-toolbar = "^4.4.2"
+django-environ = "^0.11.2"
+gunicorn = "^22.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "^70.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

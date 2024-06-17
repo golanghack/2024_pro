@@ -1,0 +1,9 @@
+DEBUG=1
+SECRET_KEY='django-insecure-!6#ohm#0^c6(z#2l@xi8e00^^^082-lj9=e6h$xbf$)rm^fd$1'
+DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1] 
+SQL_ENGINE=''
+SQL_DATABASE=''
+SQL_USER=''
+SQL_PASSWORD=''
+SQL_HOST=''
+SQL_PORt=''

@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "app-011"
+version = "0.1.0"
+description = ""
+authors = ["noskill <golanghack@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.6"
+djangorestframework = "^3.15.1"
+python-decouple = "^3.8"
+django-debug-toolbar = "^4.4.2"
+python-dotenv = "^1.0.1"
+drf-yasg = "^1.21.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

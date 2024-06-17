@@ -16,6 +16,7 @@ RUN pip install --upgrade pip
 RUN pip install flake8==7.0.0
 # poetry
 RUN pip install poetry
+RUN pip install python-dotenv
 COPY poetry.lock .
 COPY pyproject.toml .
 RUN poetry install
@@ -43,6 +44,7 @@ RUN apt-get -y install python3-numpy python3-scipy
 RUN apt install -y netcat-traditional
 RUN pip install --upgrade pip 
 RUN pip install poetry
+RUN pip install python-dotenv
 COPY poetry.lock .
 COPY pyproject.toml .
 RUN poetry install

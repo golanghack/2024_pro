@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from dotenv import load_dotenv, find_dotenv
-
 load_dotenv(find_dotenv())
 from decouple import Config, RepositoryEnv
 
@@ -33,7 +32,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", '0.0.0.0', '127.0.0.1',]
 
 # ID
 SITE_ID = 1

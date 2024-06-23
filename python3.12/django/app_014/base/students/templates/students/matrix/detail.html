@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load cache %}
+
+{% block title %}
+  {{ object.title }}
+{% endblock %}
+
+{% block content %}
+  <h1>
+    {{ module.title }}
+  </h1>
+  <div class="contents">
+    <h3>Блок</h3>
+    <ul id="modules">
+      {% for m in object.modules.all %}
+        <li data-id="{{ m.id }}" {% if m == module %}class="selected"{% endif %}>
+          <a href="{% url "student_matrix_detail_block" object.id m.id %}">
+            <span>
+             Блок <span class="order">{{ m.order|add:1 }}</span>
+            </span>
+            <br>
+            {{ m.title }}
+          </a>
+        </li>
+      {% empty %}
+        <li>Нет пока никаких блоков.</li>
+      {% endfor %}
+    </ul>
+    <h3>
+      <a href="{% url "chat:matrix_chat_room" object.id %}">
+        Перейти в чат с ментором
+      </a>
+    </h3>
+  </div>
+  <div class="module">
+    {% cache 600 block_contents block %}
+      {% for content in block.contents.all %}
+        {% with item=content.item %}
+          <h2>{{ item.title }}</h2>
+          {{ item.render }}
+        {% endwith %}
+      {% endfor %}
+    {% endcache %}
+  </div>
+{% endblock %}

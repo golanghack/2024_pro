@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if subject %}
+    {{ subject.title }} Мартрицы
+  {% else %}
+    Все матрицы
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1>
+    {% if subject %}
+      {{ subject.title }} матриц
+    {% else %}
+      Все матрицы
+    {% endif %}
+  </h1>
+  <div class="contents">
+    <h3>Список доступных</h3>
+    <ul id="modules">
+      <li {% if not subject %}class="selected"{% endif %}>
+        <a href="{% url "matrix_list" %}">Все</a>
+      </li>
+      {% for s in subjects %}
+        <li {% if subject == s %}class="selected"{% endif %}>
+          <a href="{% url "matrix_list_subject" s.slug %}">
+            {{ s.title }}
+            <br>
+            <span>{{ s.total_matrix }} матрица{{ s.total_matrix|pluralize }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="module">
+    {% for matr in matrix %}
+      {% with subject=matr.subject %}
+        <h3>
+          <a href="{% url "matrix_detail" matr.slug %}">
+            {{ matr.title }}
+          </a>
+        </h3>
+        <p>
+          <a href="{% url "course_list_subject" subject.slug %}">{{ subject }}</a>.
+            {{ matr.total_modules }} матриц.
+            Автор: {{ matr.owner.get_full_name }}
+        </p>
+      {% endwith %}
+    {% endfor %}
+  </div>
+{% endblock %}

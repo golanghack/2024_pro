@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if object %}
+    Редактрировать "{{ object.title }}"
+  {% else %}
+    Добавить новый блок или матрицу
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1>
+    {% if object %}
+      Редактрировать "{{ object.title }}"
+    {% else %}
+      Добавить новый блок или матрицу
+    {% endif %}
+  </h1>
+  <div class="module">
+    <h2>Информация о блоке или матрице</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <p><input type="submit" value="Сохранить"></p>
+    </form>
+  </div>
+{% endblock %}

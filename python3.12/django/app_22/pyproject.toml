@@ -13,6 +13,8 @@ channels-redis = "^4.2.0"
 pytest-django = "^4.8.0"
 drf-yasg = "^1.21.7"
 pandas = "^2.2.2"
+setuptools = "^72.1.0"
+kafka-python-ng = "^2.2.2"
 
 
 [build-system]

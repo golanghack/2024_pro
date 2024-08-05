@@ -18,7 +18,7 @@ title="Food Service API",
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('food.urls')),
+    path('api/', include('statistic.urls')),
 ]
 urlpatterns += [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

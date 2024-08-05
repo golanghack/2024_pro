@@ -3,28 +3,7 @@ version: '3.8'
 
 services:
 
-  web_django:
-    build: .
-    container_name: web_django
-    command: >
-      sh -c "python manage.py makemigrations api &&
-             python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
-    ports:
-        - 8000:8000
-    env_file:
-      - .env
-    depends_on:
-      - postgres_food
-      - broker
-      - zookeeper
-    links:
-      - postgres_food:postgres_food
-    volumes:
-      - ./food_service/:/food_service
-    restart: "unless-stopped"
-
-
+  
   postgres_food:
     image: postgres:14
     container_name: postgres_food
@@ -89,6 +68,26 @@ services:
       KAFKA_CLUSTERS_0_NAME: broker
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: broker:29092
       KAFKA_CLUSTERS_0_METRICS_PORT: 2181
+  web_django:
+    build: .
+    container_name: web_django
+    command: >
+      sh -c "python manage.py makemigrations api &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    ports:
+        - 8000:8000
+    env_file:
+      - .env
+    depends_on:
+      - postgres_food
+      - broker
+      - zookeeper
+    links:
+      - postgres_food:postgres_food
+    volumes:
+      - ./food_service/:/food_service
+    restart: "unless-stopped"    
 
 volumes:
   postgres_food:

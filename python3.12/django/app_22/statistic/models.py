@@ -3,8 +3,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class FoodItem(models.Model):
-    user_id = models.CharField(max_length=100, db_index=True, uniq=True, verbose_name=_('user id'))
-    fdc_id = models.CharField(max_length=100, db_index=True, uniq=True, verbose_name=_('fdc id'))
+    user_id = models.CharField(max_length=100, db_index=True, unique=True, verbose_name=_('user id'))
+    fdc_id = models.CharField(max_length=100, db_index=True, unique=True, verbose_name=_('fdc id'))
     description = models.CharField(max_length=300, verbose_name=_('description'))
     food_category = models.CharField(max_length=80, verbose_name=_('food_category'))
     energy_value = models.FloatField(blank=True, null=False, verbose_name=_('energy value'))

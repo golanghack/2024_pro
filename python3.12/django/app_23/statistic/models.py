@@ -1,5 +1,8 @@
 
 from django.db import models
+from django.http import request
+from django.contrib.auth.models import User
+from auth import extract_user_id_from_token
 
 class FoodItem(models.Model):
     fdc_id = models.IntegerField()
@@ -18,3 +21,11 @@ class MealTime(models.Model):
     meal_time = models.CharField(max_length=50)
     portion_size = models.FloatField()
     date = models.DateField()
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_id = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.user.username
+    

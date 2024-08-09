@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React [RU] Tutorial</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!-- Не используйте это в production -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <style>
+        .red {
+          color: #FF0000;
+        }
+      </style>
+  </head>
+  <div id="root"></div>
+    <script type="text/babel">
+
+      const App = () => {
+        return <p>Всем привет, я компонент App</p>
+      }
+
+      const News = () => {
+  return <p>К сожалению, новостей нет</p>
+}
+
+class BigApp extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <h1>Я компонент, BigApp</h1>
+        <p className='red'>Компоненты можно вкладывать друг в друга.</p>
+        <App />
+        <News />
+      </React.Fragment>
+    )
+  }
+}
+
+      ReactDOM.render(
+        <BigApp />,
+        document.getElementById('root')
+      );
+
+    </script>
+
+  </body>
+  </html>
